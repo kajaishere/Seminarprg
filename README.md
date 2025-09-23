@@ -2,5 +2,7 @@
 
 Toto je muj prvni repozaitar.
 
-Tadz je uprava provedena ONLINE.
+Tady je uprava provedena ONLINE.
+
+Toto jsou lokalni zmeny.
 
