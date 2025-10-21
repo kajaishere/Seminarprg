@@ -28,7 +28,7 @@ class Lod:
         souper.bran_se(uder)
 
     def bran_se(self, uder):
-        poskozeni = uder - (self._stit + self._kostka.hof ())
+        poskozeni = uder - (self._stit + self._kostka.hod())
         if poskozeni > 0:
             zprava = f'{self._jmeno} urpela zasah o sile {poskozeni} hp.'
             self._trup -= poskozeni
@@ -40,7 +40,7 @@ class Lod:
         self.nastav_zpravu(zprava)
     
     def nastav_zpravu(self, zprava):
-        self.zprava = zprava
+        self._zprava = zprava
 
     def vypis_zpravu(self):
-        returm self._zprava 
+        return self._zprava 
