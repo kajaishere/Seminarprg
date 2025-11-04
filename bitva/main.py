@@ -21,12 +21,13 @@ class Sektor:
         print("Zahajit souboj...")
         input()
 
-        self._lod_1.utoc(self._lod_2)
-        self._vypis_zpravu(self._lod_1.vypis_zpravu())
-        self._vypis_zpravu(self._lod_2.vypis_zpravu())
-        self._lod_2.utoc(self._lod_1)
-        self._vypis_zpravu(self._lod_2.vypis_zpravu())
-        self._vypis_zpravu(self._lod_1.vypis_zpravu())
+        while self._lod_1.je_operacni() and self._lod_2.je_operacni():
+            self._lod_1.utoc(self._lod_2)
+            self._vypis_zpravu(self._lod_1.vypis_zpravu())
+            self._vypis_zpravu(self._lod_2.vypis_zpravu())
+            self._lod_2.utoc(self._lod_1)
+            self._vypis_zpravu(self._lod_2.vypis_zpravu())
+            self._vypis_zpravu(self._lod_1.vypis_zpravu())
 
 
     def _vypis_zpravu(self, zprava):
@@ -35,7 +36,7 @@ class Sektor:
 if __name__ == '__main__':
     k = Kostka(10)
     lodka = Lod("Black pearl", 100, 80, 50, k)
-    clun = Lod("Clunda", 40, 20, 30, k)
+    clun = Lod("Clunda", 140, 20, 30, k)
     ocean = Sektor(lodka, clun, k)
 
     ocean.souboj()
