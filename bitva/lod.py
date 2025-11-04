@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 '''
-Lod a odvozene tridy pro vesmirny souboj.
+Lod a odvozene tridy pro souboj.
 '''
 
 class Lod:
