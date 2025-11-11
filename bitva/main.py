@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from kostka import Kostka
-from lod import Lod
+from lod import Lod, Stihac
 
 class Sektor:
     """
@@ -24,7 +24,7 @@ class Sektor:
 
     def _vypis_lod(self, lod):
         print(lod)
-        print(f'Trup: {lod._trup}\n')
+        print(f'Trup: {lod.graficky_trup()}\n')
 
     def _vykresli(self):
         self._vycisti()
@@ -33,6 +33,7 @@ class Sektor:
         self._vypis_lod(self._lod_1)
         self._vypis_lod(self._lod_2)
         print()
+
 
     def souboj(self):
         print(f"Vitej v sektoru {self._jmeno}!")
@@ -65,15 +66,17 @@ class Sektor:
         import time as _time
         if zprava:
             print(zprava)
-            _time.sleep(2)
+            _time.sleep(1)
 
 if __name__ == '__main__':
     k = Kostka(10)
     lodka = Lod("Black pearl", 100, 80, 50, k)
     clun = Lod("Clunda", 140, 60, 30, k)
     l = Lod("Yachta", kostka=k, trup=80, utok=60, stit=70)
+    fighter = Stihac("Killa", 90, 50, 60, k, 30, 90)
 
-    ocean = Sektor(lodka, clun, k, "Severni Ledovy ocean")
-    more = Sektor(lodka, l, k, "Cerne more")
+    ocean = Sektor(lodka, fighter, k, "Severni Ledovy ocean")
+    more = Sektor(lodka, l, k, "Stredozemni more")
 
     ocean.souboj()
+    more.souboj()
