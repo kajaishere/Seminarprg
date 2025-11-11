@@ -71,7 +71,9 @@ if __name__ == '__main__':
     k = Kostka(10)
     lodka = Lod("Black pearl", 100, 80, 50, k)
     clun = Lod("Clunda", 140, 60, 30, k)
+    l = Lod("Yachta", kostka=k, trup=80, utok=60, stit=70)
 
     ocean = Sektor(lodka, clun, k, "Severni Ledovy ocean")
+    more = Sektor(lodka, l, k, "Cerne more")
 
     ocean.souboj()
