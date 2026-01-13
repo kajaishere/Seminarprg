@@ -19,6 +19,13 @@ class FilterCriteria:
     min_money: Optional[List[str]] = None
     channel_darknet_only: bool = False
 
+    @classmethod
+    def from_args(cls, args: argparse.Namespace) -> "FilterCriteria":
+        def split_opt(val Optional[str]) -> Optional[List[str]]:
+            if val is None:
+                return None
+            return [x.strip().upper() for x in val.split(',') if x.strip()]
+
 class DataRepository:
     def __init__(self, path):
         self.path = path
