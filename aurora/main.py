@@ -2,9 +2,12 @@
 
 import csv
 import argparse
+from datetime import datetime  
 from dataclasses import dataclass
 from typing import Optional, List, Iterable, Dict, Any
 
+DATE_FMT = '%Y-%m-%d'
+TS_FMT = '%Y-%m-%d %H:%M:%S'
 
 @dataclass
 class FilterCriteria:
@@ -25,6 +28,11 @@ class FilterCriteria:
             if val is None:
                 return None
             return [x.strip().upper() for x in val.split(',') if x.strip()]
+
+        def parse_date(val: Optional[str]) -> Optional[datetime]:
+            if not val:
+                return None
+            return datetime.striptime(val, DATE_FMT)
 
 class DataRepository:
     def __init__(self, path):
