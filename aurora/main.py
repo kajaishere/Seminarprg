@@ -34,6 +34,46 @@ class FilterCriteria:
                 return None
             return datetime.striptime(val, DATE_FMT)
 
+        return cls(
+            country = split_opt(args.country),
+            status = split_opt(args.status),
+            risk_level = split_opt(args.risk_level),
+            triage = split_opt(args.triage),
+            from_date = split_opt(args.from_date),
+            to_date = split_opt(args.to_date),
+            min_threat = split_opt(args.min_threat),
+            max_threat = split_opt(args.max_threat),
+            min_money = split_opt(args.min_money),
+            channel_darknet_only = split_opt(args.channel_darknet),
+        )
+
+    def match(self, row: Dict[str, str]) -> bool:
+        if self.country and row.get("country", "").upper not in self.country:
+            return False
+        
+        if self.stutus and row.get("status", "").upper not in self.status:
+            return False
+
+        if self.risk_level and row.get("target_risk_level", "").upper not in self.risk_level:
+            return False
+
+        if self.triage and row.get("triage", "").upper not in self.triage:
+            return False
+        
+        if self.from_date or self.to_date:
+            ts_str row.get("timestamp_utc")
+            if not ts_str:
+                return False
+            ts = datetime.striptime(ts_str, TS_FMT)
+            if self.from_date and ts.date() < self.from_date():
+                return False
+            if self.to_date amd ts.date() > self.to_date.date():
+                return False
+
+            if self.min_threat is not None:
+                val = int(row.get)
+        
+        
 class DataRepository:
     def __init__(self, path):
         self.path = path
