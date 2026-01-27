@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+"""
+Filter program.
+Co to dělá? Filtruje podle dané databáze. 
+Funguje? Zatim ne :(
+"""
+
 import csv
 import argparse
 from datetime import datetime
@@ -27,7 +33,9 @@ class FilterCriteria:
         def split_opt(val: Optional[str]) -> Optional[List[str]]:
             if val is None:
                 return None
-            return [x.strip().upper() for x in val.split(',') if x.strip()]
+            print(val)
+            input()
+            return [x.strip().upper() for x in val.split(",") if x.strip()]
         
         def parse_date(val: Optional[str]) -> Optional[datetime]:
             if not val:
@@ -44,7 +52,7 @@ class FilterCriteria:
             min_threat = split_opt(args.min_threat),
             max_threat = split_opt(args.max_threat),
             min_money = split_opt(args.min_money),
-            channel_darknet_only = split_opt(args.channel_darknet)
+            channel_darknet_only = args.channel_darknet
         )
     
     def match(self, row: Dict[str, str]) -> bool:
@@ -206,7 +214,7 @@ class AuroraApp:
         self.processor.sumarize(rows)        
 
 def parse_args():
-    p = argparse.ArgumentParser(description="Add description.")
+    p = argparse.ArgumentParser(description=__doc__)
 
     p.add_argument('--input', required=True, help="Path to input CSV file")
     p.add_argument('--output', required=True, help="Path to output CSV file")
