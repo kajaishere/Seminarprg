@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
-
 """
-Filter program.
-Co to dělá? Filtruje podle dané databáze. 
-Funguje? Zatim ne :(
+Filtering dBase of CZArmy
 """
 
 import csv
@@ -33,8 +30,6 @@ class FilterCriteria:
         def split_opt(val: Optional[str]) -> Optional[List[str]]:
             if val is None:
                 return None
-            print(val)
-            input()
             return [x.strip().upper() for x in val.split(",") if x.strip()]
         
         def parse_date(val: Optional[str]) -> Optional[datetime]:
